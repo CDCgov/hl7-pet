@@ -1,8 +1,8 @@
 name:= "HL7-PET"
 
-githubOwner := "cdc.gov"
-githubRepository := "HL7-PET"
-githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
+//githubOwner := "cdc.gov"
+//githubRepository := "HL7-PET"
+//githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
 
 
 organization:= "gov.cdc.hl7"
