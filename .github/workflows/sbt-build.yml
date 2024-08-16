@@ -1,4 +1,4 @@
-name: Maven Build
+name: Build & Publish
 
 on: workflow_dispatch
 
@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup JDK And Maven Env
+      - name: Setup JDK And SBT
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
@@ -17,14 +17,14 @@ jobs:
           server-username: SONATYPE_USERNAME
           server-password: SONATYPE_PASSWORD
           gpg-private-key: ${{ secrets.GPG_SIGNING_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+          gpg-passphrase: GPG_PASSPHRASE
           cache: "sbt"
 
-      - name: Mavin Build and Test
-        run: mvn --batch-mode --update-snapshots verify
+      - name: Test
+        run: sbt test
 
       - name: Publish to Maven Repository
-        run: mvn --batch-mode deploy
+        run: sbt ci-release
         env:
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.GPG_SECRET }}
@@ -32,6 +32,6 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
 
       - name: Publish to GitHub Packages
-        run: mvn --batch-mode deploy
+        run: sbt publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
