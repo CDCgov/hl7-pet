@@ -13,11 +13,6 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "21"
-          server-id: central
-          server-username: SONATYPE_USERNAME
-          server-password: SONATYPE_PASSWORD
-          gpg-private-key: ${{ secrets.GPG_SIGNING_KEY }}
-          gpg-passphrase: GPG_PASSPHRASE
           cache: "sbt"
 
       - name: Test
