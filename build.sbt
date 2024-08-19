@@ -90,6 +90,7 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 // crossPaths:= true
 
 // publishArtifact in (Compile, packageSrc) := true
+publishArtifact := false
 
 lazy val plugin = project
   .enablePlugins(SbtPlugin)
