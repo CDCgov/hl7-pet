@@ -12,4 +12,5 @@ inThisBuild(List(
     )
   )
 ))
+
 ThisBuild /  sonatypeCredentialHost := sonatypeCentralHost
