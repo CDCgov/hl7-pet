@@ -1,9 +1,3 @@
-import xerial.sbt.Sonatype.sonatypeCentralHost
-
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
-
-publishTo := sonatypePublishToBundle.value
-
 name:= "HL7-PET"
 
 //githubOwner := "cdc.gov"
