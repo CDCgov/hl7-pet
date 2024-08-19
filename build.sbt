@@ -93,7 +93,7 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 // crossPaths:= true
 
 // publishArtifact in (Compile, packageSrc) := true
-publishArtifact := false
+// publishArtifact := false
 
 lazy val plugin = project
   .enablePlugins(SbtPlugin)
@@ -106,9 +106,9 @@ lazy val plugin = project
     addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.11.2")
   )
 
-resolvers in Global ++= Seq(
-  "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
-  "Maven Central Server"          at "https://repo.maven.org/maven2",
-  "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
-  "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
-)
+// resolvers in Global ++= Seq(
+//   "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
+//   "Maven Central Server"          at "https://repo.maven.org/maven2",
+//   "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
+//   "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
+// )
