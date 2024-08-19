@@ -16,11 +16,11 @@ inThisBuild(
   )
 )
 
-import xerial.sbt.Sonatype.sonatypeCentralHost
+// import xerial.sbt.Sonatype.sonatypeCentralHost
 
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+// ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
 
-publishTo := sonatypePublishToBundle.value
+// publishTo := sonatypePublishToBundle.value
 
 name:= "HL7-PET"
 
