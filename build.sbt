@@ -1,25 +1,6 @@
-inThisBuild(
-  List(
-    organization := "com.github.sbt",
-    homepage := Some(url("https://github.com/olafurpg/sbt-ci-release")),
-    licenses := Seq(
-      "Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
-    ),
-    developers := List(
-      Developer(
-        "olafurpg",
-        "Ólafur Páll Geirsson",
-        "olafurpg@gmail.com",
-        url("https://geirsson.com")
-      )
-    )
-  )
-)
-
 import xerial.sbt.Sonatype.sonatypeCentralHost
 
 ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
-sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 
 publishTo := sonatypePublishToBundle.value
 
@@ -54,7 +35,7 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 // pomIncludeRepository := { _ => false }
 
-// publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
+publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
 // credentials += Credentials(
 //   "GitHub Package Registry",
 //   "maven.pkg.github.com",
@@ -105,10 +86,3 @@ lazy val plugin = project
     addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1"),
     addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.11.2")
   )
-
-// resolvers in Global ++= Seq(
-//   "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
-//   "Maven Central Server"          at "https://repo.maven.org/maven2",
-//   "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
-//   "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
-// )
