@@ -12,3 +12,4 @@ inThisBuild(List(
     )
   )
 ))
+scalaVersion := "2.13.14"
