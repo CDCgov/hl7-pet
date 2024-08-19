@@ -49,7 +49,7 @@ description := "This project is a library to Parse HL7 v2 messages"
 licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
-pomIncludeRepository := { _ => false }
+// pomIncludeRepository := { _ => false }
 
 // publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
 // credentials += Credentials(
