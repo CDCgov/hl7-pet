@@ -16,11 +16,12 @@ inThisBuild(
   )
 )
 
-// import xerial.sbt.Sonatype.sonatypeCentralHost
+import xerial.sbt.Sonatype.sonatypeCentralHost
 
-// ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 
-// publishTo := sonatypePublishToBundle.value
+publishTo := sonatypePublishToBundle.value
 
 name:= "HL7-PET"
 
@@ -104,3 +105,10 @@ lazy val plugin = project
     addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1"),
     addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.11.2")
   )
+
+resolvers in Global ++= Seq(
+  "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
+  "Maven Central Server"          at "http://repo1.maven.org/maven2",
+  "TypeSafe Repository Releases"  at "http://repo.typesafe.com/typesafe/releases/",
+  "TypeSafe Repository Snapshots" at "http://repo.typesafe.com/typesafe/snapshots/"
+)
