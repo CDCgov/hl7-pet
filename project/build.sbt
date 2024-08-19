@@ -1,6 +1,3 @@
-import xerial.sbt.Sonatype.sonatypeCentralHost
-
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
 inThisBuild(List(
   organization := "com.github.sbt",
   homepage := Some(url("https://github.com/sbt/sbt-ci-release")),
