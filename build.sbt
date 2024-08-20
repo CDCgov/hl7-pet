@@ -39,7 +39,14 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 // credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 
-publishTo := sonatypePublishTo.value
+// publishTo := sonatypePublishTo.value
+publishTo := {
+  val nexus = "https://s01.oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
 
 publishMavenStyle := true
 
