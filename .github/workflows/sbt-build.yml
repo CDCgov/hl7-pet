@@ -1,6 +1,9 @@
 name: Build & Publish
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feature/sbt-build']
 
 jobs:
   Build:
