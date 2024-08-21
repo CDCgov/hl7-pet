@@ -2,8 +2,8 @@ name: Publish Jar on Push to main
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: ['master']
+  push:
+    branches: ['master']
 
 jobs:
   publish:
