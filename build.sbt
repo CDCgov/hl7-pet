@@ -21,6 +21,19 @@ inThisBuild(List(
   )
 ))
 
+pomIncludeRepository := { _ => false }
+credentials += Credentials(
+  "GitHub Package Registry",
+  "maven.pkg.github.com",
+  "cdcgov",
+  System.getenv("GITHUB_TOKEN")
+)
+
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+
+publishMavenStyle := true
+
+version := "1.2.10"
 scalaVersion := "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
@@ -35,4 +48,6 @@ libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" 
 libraryDependencies += "com.fasterxml.jackson.module" % "jackson-modules-base" % "2.17.0" pomOnly()
 libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
-// publishArtifact := false
+crossPaths:= true
+
+publishArtifact in (Compile, packageSrc) := true
