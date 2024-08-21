@@ -3,7 +3,7 @@ name: Build & Publish
 on:
   workflow_dispatch:
   push:
-    branches: ['feature/sbt-build']
+    branches: ['master']
 
 jobs:
   Build:
