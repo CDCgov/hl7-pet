@@ -22,15 +22,7 @@ inThisBuild(List(
 ))
 
 pomIncludeRepository := { _ => false }
-// credentials += Credentials(
-//   "GitHub Package Registry",
-//   "maven.pkg.github.com",
-//   "cdcgov",
-//   System.getenv("GITHUB_TOKEN")
-// )
-
 // publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
-// credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 
 publishMavenStyle := true
 
@@ -51,4 +43,4 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
 crossPaths:= true
 
-publishArtifact in (Compile, packageSrc) := true
+publishArtifact in (Compile, packageSrc) := false
