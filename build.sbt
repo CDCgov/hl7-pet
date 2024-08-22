@@ -42,7 +42,7 @@ credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 publishMavenStyle := true
 
 version := "1.2.10"
-scalaVersion:= "2.13.10"
+scalaVersion:= "2.13.13"
 
 //mainClass in assembly := Some("gov.cdc.hl7pet.DeIdentifierApp")
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
