@@ -30,6 +30,12 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 pomIncludeRepository := { _ => false }
 
 publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
+credentials += Credentials(
+  "GitHub Package Registry",
+  "maven.pkg.github.com",
+  "cdcgov",
+  System.getenv("GITHUB_TOKEN")
+)
 
 scalaVersion:= "2.13.13"
 
