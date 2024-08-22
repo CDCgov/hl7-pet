@@ -29,19 +29,6 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 pomIncludeRepository := { _ => false }
 
-publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
-credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "cdcgov",
-  System.getenv("GITHUB_TOKEN")
-)
-
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
-
-publishMavenStyle := true
-
-version := "1.2.10"
 scalaVersion:= "2.13.13"
 
 //mainClass in assembly := Some("gov.cdc.hl7pet.DeIdentifierApp")

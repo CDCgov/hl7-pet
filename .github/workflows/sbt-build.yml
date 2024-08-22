@@ -21,7 +21,7 @@ jobs:
           java-version: "21"
           cache: "sbt"
 
-      - name: Cdisplay publish to path
+      - name: Display publish to path
         run: sbt publishTo
 
       # - name: Publish to Maven Repository
