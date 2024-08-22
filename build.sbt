@@ -29,6 +29,8 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 pomIncludeRepository := { _ => false }
 
+publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
+
 scalaVersion:= "2.13.13"
 
 //mainClass in assembly := Some("gov.cdc.hl7pet.DeIdentifierApp")
