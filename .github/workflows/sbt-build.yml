@@ -21,10 +21,8 @@ jobs:
           java-version: "21"
           cache: "sbt"
 
-      - name: Compile
+      - name: Compile & setup for publishing
         run: sbt compile
-
-      - name: Setup for publishing
         env:
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
