@@ -21,9 +21,6 @@ jobs:
           java-version: "21"
           cache: "sbt"
 
-      - name: Display publish to path
-        run: sbt publishTo
-
       - name: Publish to Maven Repository
         run: sbt ci-release
         env:
