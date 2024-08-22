@@ -21,17 +21,17 @@ jobs:
           java-version: "21"
           cache: "sbt"
 
-      - name: Compile & setup for publishing
-        run: sbt compile
-        env:
-          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cdisplay publish to path
+        run: sbt publishTo
 
       # - name: Publish to Maven Repository
       #   run: sbt ci-release
 
       - name: Publish to GitHub Packages
         run: sbt publish
+          env:
+          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -24,7 +24,7 @@ developers := List(
 )
 
 description := "This project is a library to Parse HL7 v2 messages"
-licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+licenses := List("Apache 2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 pomIncludeRepository := { _ => false }
