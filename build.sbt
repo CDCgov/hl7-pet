@@ -29,6 +29,7 @@ credentials += Credentials(
   System.getenv("GITHUB_TOKEN")
 )
 
+publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet"
 credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 
 publishMavenStyle := true
