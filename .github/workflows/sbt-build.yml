@@ -24,14 +24,15 @@ jobs:
       - name: Display publish to path
         run: sbt publishTo
 
-      # - name: Publish to Maven Repository
-      #   run: sbt ci-release
-
-      - name: Publish to GitHub Packages
-        run: sbt publish
+      - name: Publish to Maven Repository
+        run: sbt ci-release
         env:
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+
+      - name: Publish to GitHub Packages
+        run: sbt publish
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
