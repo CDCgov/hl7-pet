@@ -22,15 +22,15 @@ inThisBuild(List(
 ))
 
 pomIncludeRepository := { _ => false }
-credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "cdcgov",
-  System.getenv("GITHUB_TOKEN")
-)
+// credentials += Credentials(
+//   "GitHub Package Registry",
+//   "maven.pkg.github.com",
+//   "cdcgov",
+//   System.getenv("GITHUB_TOKEN")
+// )
 
-publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+// publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
+// credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 
 publishMavenStyle := true
 
