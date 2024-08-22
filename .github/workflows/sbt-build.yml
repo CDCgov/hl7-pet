@@ -29,7 +29,7 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: sbt publish
-          env:
+        env:
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
