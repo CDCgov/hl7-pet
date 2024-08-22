@@ -43,4 +43,4 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
 crossPaths:= true
 
-publishArtifact in (Compile, packageSrc) := false
+publishArtifact in (Compile, packageSrc) := true
