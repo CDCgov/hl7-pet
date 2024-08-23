@@ -12,6 +12,8 @@ inThisBuild(List(
   )
 ))
 
+import xerial.sbt.Sonatype.sonatypeCentralHost
+ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
 
 pomIncludeRepository := { _ => false }
 
