@@ -12,23 +12,7 @@ inThisBuild(List(
   )
 ))
 
-name:= "HL7-PET"
-
-organization:= "gov.cdc.hl7"
-organizationName:= "CDC"
-scmInfo:= Some (
-  ScmInfo(
-    url("https://github.com/cdcgov/hl7-pet"),
-    "scm:git@github.com/cdcgov/hl7-pet.git"
-  )
-)
-
 
 pomIncludeRepository := { _ => false }
 
-// version := "1.2.10"
-// scalaVersion := "2.13.13"
-
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
-
-// publishArtifact in (Compile, packageSrc) := true
