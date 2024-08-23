@@ -26,17 +26,9 @@ scmInfo:= Some (
 
 pomIncludeRepository := { _ => false }
 
-publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
-credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "cdcgov",
-  System.getenv("GITHUB_TOKEN")
-)
-
 // version := "1.2.10"
 // scalaVersion := "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 
-publishArtifact in (Compile, packageSrc) := true
+// publishArtifact in (Compile, packageSrc) := true
