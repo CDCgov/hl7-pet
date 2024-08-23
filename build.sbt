@@ -51,3 +51,10 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 crossPaths:= true
 
 publishArtifact in (Compile, packageSrc) := true
+
+resolvers in Global ++= Seq(
+  "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
+  "Maven Central Server"          at "https://repo1.maven.org/maven2",
+  "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
+  "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
+)

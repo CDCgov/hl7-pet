@@ -12,8 +12,14 @@ inThisBuild(List(
   )
 ))
 
-import xerial.sbt.Sonatype.sonatypeCentralHost
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+organization:= "gov.cdc.hl7"
+organizationName:= "CDC"
+scmInfo:= Some (
+  ScmInfo(
+    url("https://github.com/cdcgov/hl7-pet"),
+    "scm:git@github.com/cdcgov/hl7-pet.git"
+  )
+)
 
 pomIncludeRepository := { _ => false }
 
