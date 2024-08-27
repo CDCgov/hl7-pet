@@ -7,12 +7,6 @@ name:= "HL7-PET"
 
 organization:= "gov.cdc.hl7"
 organizationName:= "CDC"
-scmInfo:= Some (
-  ScmInfo(
-    url("https://github.com/CDCgov/hl7-pet"),
-    "scm:git@github.com/CDCgov/hl7-pet.git"
-  )
-)
 
 developers := List(
   Developer(
@@ -30,8 +24,6 @@ developers := List(
 )
 
 description := "This project is a library to Parse HL7 v2 messages"
-licenses := List("Apache 2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
-homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 pomIncludeRepository := { _ => false }
 
@@ -64,3 +56,5 @@ resolvers in Global ++= Seq(
   "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
   "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
 )
+
+// System.setProperty("http.maxRedirects", "50")
