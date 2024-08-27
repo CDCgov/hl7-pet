@@ -9,8 +9,8 @@ organization:= "gov.cdc.hl7"
 organizationName:= "CDC"
 scmInfo:= Some (
   ScmInfo(
-    url("https://github.com/cdcgov/hl7-pet"),
-    "scm:git@github.com/cdcgov/hl7-pet.git"
+    url("https://github.com/CDCgov/hl7-pet"),
+    "scm:git@github.com/CDCgov/hl7-pet.git"
   )
 )
 
@@ -19,7 +19,13 @@ developers := List(
     id="mcq1",
     name="Marcelo Caldas",
     email = "mcq1@cdc.com",
-    url = url ("https://github.com/cdcent/hl7-pet")
+    url = url ("https://github.com/mscaldas2012")
+  ),
+  Developer(
+    id="xhu8",
+    name="Seun",
+    email="xuh8@cdc.gov",
+    url=url("https://github.com/seun0925")
   )
 )
 

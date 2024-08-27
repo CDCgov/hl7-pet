@@ -12,15 +12,6 @@ inThisBuild(List(
   )
 ))
 
-organization:= "gov.cdc.hl7"
-organizationName:= "CDC"
-scmInfo:= Some (
-  ScmInfo(
-    url("https://github.com/cdcgov/hl7-pet"),
-    "scm:git@github.com/cdcgov/hl7-pet.git"
-  )
-)
-
+// publishTo := Some("Maven cdcgov Apache Maven Packages" at "https://central.sonatype.com/cdc/gov/")
 pomIncludeRepository := { _ => false }
 
-mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
