@@ -8,9 +8,6 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -31,12 +28,12 @@ jobs:
           GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
 
       - name: Publish to Maven Repository
-        run: sbt ci-release
         env:
           GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY_BORIS }}'
           GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
           SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
           SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
+        run: sbt ci-release
           #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Publish to GitHub Packages
