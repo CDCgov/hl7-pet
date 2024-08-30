@@ -24,8 +24,8 @@ jobs:
       - name: Publish to Maven Repository
         run: sbt ci-release
         env:
-          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE_BORIS }}
+          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

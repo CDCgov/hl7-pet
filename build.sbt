@@ -45,9 +45,4 @@ crossPaths:= true
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
 
-resolvers in Global ++= Seq(
-  "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
-  "Maven Central Server"          at "https://repo1.maven.org/maven2",
-  "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
-  "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
-)
+resolvers ++= Opts.resolver.sonatypeOssSnapshots
