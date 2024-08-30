@@ -12,6 +12,5 @@ inThisBuild(List(
   )
 ))
 
-// publishTo := Some("Maven cdcgov Apache Maven Packages" at "https://central.sonatype.com/cdc/gov/")
 pomIncludeRepository := { _ => false }
 

@@ -1,14 +1,6 @@
-name:= "HL7-PET"
+ThisBuild / organization:= "cdc.gov.hl7"
 
-//githubOwner := "cdc.gov"
-//githubRepository := "HL7-PET"
-//githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
-
-
-organization:= "gov.cdc.hl7"
-organizationName:= "CDC"
-
-developers := List(
+ThisBuild / developers := List(
   Developer(
     id="mcq1",
     name="Marcelo Caldas",
@@ -23,11 +15,13 @@ developers := List(
   )
 )
 
-description := "This project is a library to Parse HL7 v2 messages"
+ThisBuild / homepage := Some(url("https://github.com/cdcent/hl7-pet"))
+ThisBuild / licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+ThisBuild / description := "This project is a library to Parse HL7 v2 messages"
 
-pomIncludeRepository := { _ => false }
+ThisBuild / pomIncludeRepository := { _ => false }
 
-scalaVersion:= "2.13.13"
+ThisBuild / scalaVersion:= "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
@@ -48,7 +42,8 @@ libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
 crossPaths:= true
 
-publishArtifact in (Compile, packageSrc) := true
+ThisBuild / publishArtifact in (Compile, packageSrc) := true
+ThisBuild / publishArtifact in Test := false
 
 resolvers in Global ++= Seq(
   "Sbt plugins"                   at "https://dl.bintray.com/sbt/sbt-plugin-releases",
@@ -56,5 +51,3 @@ resolvers in Global ++= Seq(
   "TypeSafe Repository Releases"  at "https://repo.typesafe.com/typesafe/releases/",
   "TypeSafe Repository Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/"
 )
-
-// System.setProperty("http.maxRedirects", "50")
