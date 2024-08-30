@@ -22,7 +22,7 @@ jobs:
         run: |
             gpgconf --kill gpg-agent || true
             gpgconf --launch gpg-agent || true
-            echo "$GPG_PRIVATE_KEY" | gpg --batch --no-tty --import
+            echo "$GPG_PRIVATE_KEY_BORIS" | gpg --batch --no-tty --import
         env:
           GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY_BORIS }}'
           GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
