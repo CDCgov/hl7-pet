@@ -1,4 +1,6 @@
-ThisBuild / organization:= "cdc.gov.hl7"
+ThisBuild / organization := "cdc.gov.hl7"
+ThisBuild / organizationName := "CDCgov"
+ThisBuild / organizationHomepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
 ThisBuild / developers := List(
   Developer(
@@ -35,14 +37,7 @@ libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" 
 libraryDependencies += "com.fasterxml.jackson.module" % "jackson-modules-base" % "2.17.0" pomOnly()
 libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
-//assemblyMergeStrategy in assembly := {
-//  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-//  case x => MergeStrategy.first
-//}
-
 crossPaths:= true
 
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
-
-resolvers ++= Opts.resolver.sonatypeOssSnapshots

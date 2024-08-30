@@ -12,5 +12,6 @@ inThisBuild(List(
   )
 ))
 
+
 pomIncludeRepository := { _ => false }
 
