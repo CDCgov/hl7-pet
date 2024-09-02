@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
 
       - name: Setup JDK And SBT
         uses: actions/setup-java@v4
@@ -22,19 +24,18 @@ jobs:
         run: |
             gpgconf --kill gpg-agent || true
             gpgconf --launch gpg-agent || true
-            echo "$PGP_PRIVATE_KEY" | gpg --batch --no-tty --import
+            echo "$GPG_PRIVATE_KEY" | gpg --batch --no-tty --import
         env:
-          PGP_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY_BORIS }}'
-          PGP_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
+          GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY_BORIS }}'
+          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
 
       - name: Publish to Maven Repository
+        run: sbt ci-release
         env:
-          PGP_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY }}'
-          PGP_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
+          GPG_PRIVATE_KEY: '${{ secrets.GPG_PRIVATE_KEY_BORIS }}'
+          GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
           SONATYPE_USERNAME: '${{ secrets.SONATYPE_USERNAME }}'
           SONATYPE_PASSWORD: '${{ secrets.SONATYPE_PASSWORD }}'
-        run: sbt ci-release
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Publish to GitHub Packages
       #   run: sbt publish

@@ -1,4 +1,5 @@
-ThisBuild / organization := "cdc.gov.hl7"
+ThisBuild / organization := "gov.cdc.hl7-pet"
+ThisBuild / name := "hl7-pet"
 ThisBuild / organizationName := "CDCgov"
 ThisBuild / organizationHomepage := Some(url("https://github.com/cdcent/hl7-pet"))
 
@@ -41,3 +42,29 @@ crossPaths:= true
 
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
+
+/*
+resolvers += "hit-nexus" at "https://hit-nexus.nist.gov/repository/releases"
+//ThisBuild / publishTo := {
+  // For accounts created after Feb 2021:
+  // val nexus = "https://s01.oss.sonatype.org/"
+//  val nexus = "https://hit-nexus.nist.gov/"
+//  if (isSnapshot.value) Some("snapshots" at nexus + "repository/snapshots")
+//  else Some("releases" at nexus + "repository/releases")
+//}
+
+ThisBuild / publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
+  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+
+ThisBuild / publishMavenStyle := true
+
+credentials += Credentials(
+  "Sonatype Nexus Repository Manager",
+  "https://oss.sonatype.org/",
+  sys.env.getOrElse("SONATYPE_USERNAME", ""),
+  sys.env.getOrElse("SONATYPE_PASSWORDS", "")
+)
+*/
