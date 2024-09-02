@@ -30,8 +30,8 @@ jobs:
           GPG_PASSPHRASE: '${{ secrets.GPG_PASSPHRASE_BORIS }}'
 
       - name: Publish to Maven Repository
-        # run: sbt ci-release
-        run: sbt clean compile publish
+        run: sbt ci-release
+        # run: sbt clean compile publish
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE_BORIS }}
