@@ -5,16 +5,16 @@ ThisBuild / organizationHomepage := Some(url("https://github.com/cdcent/hl7-pet"
 
 ThisBuild / developers := List(
   Developer(
-    id="mcq1",
-    name="Marcelo Caldas",
+    id = "mcq1",
+    name = "Marcelo Caldas",
     email = "mcq1@cdc.com",
-    url = url ("https://github.com/mscaldas2012")
+    url = url("https://github.com/mscaldas2012")
   ),
   Developer(
-    id="xhu8",
-    name="Seun",
-    email="xuh8@cdc.gov",
-    url=url("https://github.com/seun0925")
+    id = "xhu8",
+    name = "Seun",
+    email = "xuh8@cdc.gov",
+    url = url("https://github.com/seun0925")
   )
 )
 
@@ -24,7 +24,7 @@ ThisBuild / description := "This project is a library to Parse HL7 v2 messages"
 
 ThisBuild / pomIncludeRepository := { _ => false }
 
-ThisBuild / scalaVersion:= "2.13.13"
+ThisBuild / scalaVersion := "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
@@ -38,13 +38,13 @@ libraryDependencies ++= Seq(
   "com.google.code.gson" % "gson" % "2.10.1"
 )
 
-crossPaths:= true
+crossPaths := true
 
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
 
 ThisBuild / publishTo := {
-  val nexus = "oss.sonatype.org"
+  val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
@@ -53,13 +53,13 @@ ThisBuild / publishMavenStyle := true
 
 credentials += Credentials(
   "Sonatype Nexus Repository Manager",
-  "https://oss.sonatype.org/",
+  "oss.sonatype.org",
   sys.env.getOrElse("SONATYPE_USERNAME", ""),
   sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
 
 /*
-// configure PGP environment
+// Uncomment the following if you want to sign your artifacts with GPG
 ThisBuild / useGpg := true
 ThisBuild / pgpPassphrase := sys.env.get("GPG_PASSPHRASE").map(_.toCharArray)
 */
