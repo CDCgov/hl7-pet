@@ -29,14 +29,14 @@ ThisBuild / scalaVersion:= "2.13.13"
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
 
-libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test"
-libraryDependencies += "org.scalatest" %% "scalatest-flatspec" % "3.2.14" % Test
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % Test
-libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.14.0"
-libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.17.0"
-libraryDependencies += "com.fasterxml.jackson.module" % "jackson-modules-base" % "2.17.0" pomOnly()
-libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
+libraryDependencies ++= Seq(
+  "org.scalactic" %% "scalactic" % "3.2.14",
+  "org.scalatest" %% "scalatest" % "3.2.14" % Test,
+  "org.scalatest" %% "scalatest-flatspec" % "3.2.14" % Test,
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.14.0",
+  "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.17.0",
+  "com.google.code.gson" % "gson" % "2.10.1"
+)
 
 crossPaths:= true
 
@@ -44,7 +44,7 @@ ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
 
 ThisBuild / publishTo := {
-  val nexus = "https://oss.sonatype.org/"
+  val nexus = "oss.sonatype.org"
   if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
