@@ -29,6 +29,12 @@ jobs:
         env:
           GPG_SECRET: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
 
+      - name: Validate Keys
+        run: sbt checkPgpSignatures
+        env:
+          GPG_SECRET: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE_BORIS }}
+
       - name: Publish to Maven Repository
         run: | 
             sbt publishSigned
