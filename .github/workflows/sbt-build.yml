@@ -29,7 +29,7 @@ jobs:
           PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
 
       - name: Publish to Maven Repository
-        run: sbt ci-release
+        run: sbt clean compile publish
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
