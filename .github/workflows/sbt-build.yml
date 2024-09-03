@@ -25,7 +25,7 @@ jobs:
         run: |
             gpgconf --kill gpg-agent || true
             gpgconf --launch gpg-agent || true
-            echo "$GPG_SECRET" | base64 --decode | gpg --import
+            echo "$GPG_SECRET" | base64 --decode | gpg --batch --no-tty --import
         env:
           GPG_SECRET: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
 
