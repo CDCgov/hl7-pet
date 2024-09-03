@@ -26,14 +26,15 @@ jobs:
             gpgconf --launch gpg-agent || true
             echo "${{ secrets.GPG_PRIVATE_KEY_BORIS }}" | gpg --batch --no-tty --import
         env:
-          PGP_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
 
       - name: Publish to Maven Repository
         run: sbt ci-release
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE_BORIS }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE_BORIS }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY_BORIS }}
 
       # - name: Publish to GitHub Packages
       #   run: sbt publish
