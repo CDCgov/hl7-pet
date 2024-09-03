@@ -1,4 +1,4 @@
-ThisBuild / organization := "gov.cdc.hl7-pet"
+ThisBuild / organization := "gov.cdc.hl7"
 ThisBuild / name := "hl7-pet"
 ThisBuild / organizationName := "CDCgov"
 ThisBuild / organizationHomepage := Some(url("https://github.com/cdcent/hl7-pet"))
@@ -26,6 +26,26 @@ ThisBuild / pomIncludeRepository := { _ => false }
 
 ThisBuild / scalaVersion := "2.13.13"
 
+crossPaths := true
+
+ThisBuild / publishArtifact in (Compile, packageSrc) := true
+ThisBuild / publishArtifact in Test := false
+
+import xerial.sbt.Sonatype.sonatypeCentralHost
+
+ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+
+ThisBuild / publishTo := sonatypePublishToBundle.value
+
+ThisBuild / publishMavenStyle := true
+
+credentials += Credentials(
+  "Sonatype Nexus Repository Manager",
+  "oss.sonatype.org",
+  sys.env.getOrElse("SONATYPE_USERNAME", ""),
+  sys.env.getOrElse("SONATYPE_PASSWORD", "")
+)
+
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
 
@@ -36,36 +56,4 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.14.0",
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.17.0",
   "com.google.code.gson" % "gson" % "2.10.1"
-)
-
-crossPaths := true
-
-ThisBuild / publishArtifact in (Compile, packageSrc) := true
-ThisBuild / publishArtifact in Test := false
-
-/*
-ThisBuild / publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-*/
-
-import xerial.sbt.Sonatype.sonatypeCentralHost
-
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
-
-// publishTo := sonatypePublishToBundle.value
-
-ThisBuild / publishTo := Some(
-  Resolver.sonatypeRepo("releases")
-)
-
-ThisBuild / publishMavenStyle := true
-
-credentials += Credentials(
-  "Sonatype Nexus Repository Manager",
-  "oss.sonatype.org",
-  sys.env.getOrElse("SONATYPE_USERNAME", ""),
-  sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
