@@ -43,16 +43,6 @@ crossPaths:= true
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
 
-/*
-resolvers += "hit-nexus" at "https://hit-nexus.nist.gov/repository/releases"
-//ThisBuild / publishTo := {
-  // For accounts created after Feb 2021:
-  // val nexus = "https://s01.oss.sonatype.org/"
-//  val nexus = "https://hit-nexus.nist.gov/"
-//  if (isSnapshot.value) Some("snapshots" at nexus + "repository/snapshots")
-//  else Some("releases" at nexus + "repository/releases")
-//}
-
 ThisBuild / publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
@@ -67,4 +57,9 @@ credentials += Credentials(
   sys.env.getOrElse("SONATYPE_USERNAME", ""),
   sys.env.getOrElse("SONATYPE_PASSWORDS", "")
 )
+
+/*
+// configure PGP environment
+ThisBuild / useGpg := true
+ThisBuild / pgpPassphrase := sys.env.get("GPG_PASSPHRASE").map(_.toCharArray)
 */
