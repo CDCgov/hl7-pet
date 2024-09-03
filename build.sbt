@@ -43,11 +43,23 @@ crossPaths := true
 ThisBuild / publishArtifact in (Compile, packageSrc) := true
 ThisBuild / publishArtifact in Test := false
 
+/*
 ThisBuild / publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
   else Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
+*/
+
+import xerial.sbt.Sonatype.sonatypeCentralHost
+
+ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+
+// publishTo := sonatypePublishToBundle.value
+
+ThisBuild / publishTo := Some(
+  Resolver.sonatypeRepo("releases")
+)
 
 ThisBuild / publishMavenStyle := true
 
