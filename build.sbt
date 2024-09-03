@@ -57,19 +57,3 @@ credentials += Credentials(
   sys.env.getOrElse("SONATYPE_USERNAME", ""),
   sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
-
-// Configure PGP signing
-ThisBuild / useGpg := true
-ThisBuild / pgpPassphrase := sys.env.get("GPG_PASSPHRASE_BORIS").map(_.toCharArray)
-ThisBuild / pgpPublicRing := {
-  val key = sys.env.getOrElse("GPG_PRIVATE_KEY_BORIS", "")
-  val file = new java.io.File("/tmp/gpg_secring.asc")
-  sbt.IO.write(file, key.getBytes)
-  file
-}
-ThisBuild / pgpPrivateRing := {
-  val key = sys.env.getOrElse("GPG_PRIVATE_KEY_BORIS", "")
-  val file = new java.io.File("/tmp/gpg_secring.asc")
-  sbt.IO.write(file, key.getBytes)
-  file
-}
