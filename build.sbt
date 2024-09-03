@@ -55,7 +55,7 @@ credentials += Credentials(
   "Sonatype Nexus Repository Manager",
   "https://oss.sonatype.org/",
   sys.env.getOrElse("SONATYPE_USERNAME", ""),
-  sys.env.getOrElse("SONATYPE_PASSWORDS", "")
+  sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
 
 /*
