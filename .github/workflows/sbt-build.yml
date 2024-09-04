@@ -42,11 +42,11 @@ jobs:
           if [ -z "$SONATYPE_PASSWORD" ]; then echo "SONATYPE_PASSWORD is not set"; else echo "SONATYPE_PASSWORD is set"; fi
           echo "-----------------------------------------------------------------"
           echo "-----------------------------------------------------------------"
-          echo "---------- Verifying Existence of GPG Variables ----------"
-          if [ -z "$GPG_PASSPHRASE" ]; then echo "GPG_PASSPHRASE is not set"; else echo "GPG_PASSPHRASE is set"; fi
-          if [ -z "$GPG_SECRET" ]; then echo "GPG_SECRET is not set"; else echo "GPG_SECRET is set"; fi          
+          echo "---------- Verifying Existence of PGP Variables ----------"
+          if [ -z "$PGP_PASSPHRASE" ]; then echo "PGP_PASSPHRASE is not set"; else echo "PGP_PASSPHRASE is set"; fi
+          if [ -z "$PGP_SECRET" ]; then echo "PGP_SECRET is not set"; else echo "PGP_SECRET is set"; fi          
           echo "----------------------------------------------------------"
-          echo "-----------------------------------------------------------"
+          echo "----------------------------------------------------------"
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
