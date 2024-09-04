@@ -32,6 +32,7 @@ jobs:
       - name: Verify Resources
         run: |
           echo "---------- Verifying GPG Keys ----------"
+          gpg --list-keys
           GPG_FINGERPRINT=$(gpg --list-keys --with-colons | grep fpr | head -n 1 | cut -d: -f10)
           echo "GPG_FINGERPRINT=$GPG_FINGERPRINT" >> $GITHUB_ENV
           gpg --keyserver keyserver.ubuntu.com --recv-keys $GPG_FINGERPRINT
