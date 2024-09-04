@@ -27,12 +27,11 @@ jobs:
             gpgconf --launch gpg-agent || true
             echo "$PGP_SECRET" | base64 --decode | gpg --batch --no-tty --import
         env:
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_SECRET: ${{ secrets.GPG_SECRET }}
 
       - name: Verify Resources
         run: |
           echo "---------- Verifying GPG Keys ----------"
-          gpg --list-keys
           GPG_FINGERPRINT=$(gpg --list-keys --with-colons | grep fpr | head -n 1 | cut -d: -f10)
           echo "GPG_FINGERPRINT=$GPG_FINGERPRINT" >> $GITHUB_ENV
           gpg --keyserver keyserver.ubuntu.com --recv-keys $GPG_FINGERPRINT
@@ -52,7 +51,7 @@ jobs:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_SECRET: ${{ secrets.GPG_SECRET }}
 
       - name: Publish to Maven Repository
         run: sbt -debug ci-release
@@ -60,7 +59,7 @@ jobs:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_SECRET: ${{ secrets.GPG_SECRET }}
 
       # - name: Publish to GitHub Packages
       #   run: sbt publish
