@@ -25,17 +25,38 @@ jobs:
         run: |
             gpgconf --kill gpg-agent || true
             gpgconf --launch gpg-agent || true
-            echo "$GPG_SECRET" | base64 --decode | gpg --batch --no-tty --import
+            echo "$PGP_SECRET" | base64 --decode | gpg --batch --no-tty --import
         env:
-          GPG_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
 
-      - name: Publish to Maven Repository
-        run: sbt ci-release
+      - name: Verify Resources
+        run: |
+          echo "---------- Verifying GPG Keys ----------"
+          GPG_FINGERPRINT=$(gpg --list-keys --with-colons | grep fpr | head -n 1 | cut -d: -f10)
+          gpg --keyserver keyserver.ubuntu.com --recv-keys $GPG_FINGERPRINT
+          echo "----------------------------------------"
+          echo "----------------------------------------"
+          echo "---------- Verifying Existence of Sonatype Credentials ----------"
+          if [ -z "$SONATYPE_USERNAME" ]; then echo "SONATYPE_USERNAME is not set"; else echo "SONATYPE_USERNAME is set"; fi
+          if [ -z "$SONATYPE_PASSWORD" ]; then echo "SONATYPE_PASSWORD is not set"; else echo "SONATYPE_PASSWORD is set"; fi
+          echo "-----------------------------------------------------------------"
+          echo "-----------------------------------------------------------------"
+          echo "---------- Verifying Existence of GPG Variables ----------"
+          if [ -z "$GPG_PASSPHRASE" ]; then echo "GPG_PASSPHRASE is not set"; else echo "GPG_PASSPHRASE is set"; fi
+          if [ -z "$GPG_SECRET" ]; then echo "GPG_SECRET is not set"; else echo "GPG_SECRET is set"; fi          
+          echo "----------------------------------------------------------"
+          echo "-----------------------------------------------------------"
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          GPG_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
+
+      - name: Publish to Maven Repository
+        run: sbt -debug ci-release
+        env:
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
 
