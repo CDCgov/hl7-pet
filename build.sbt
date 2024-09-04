@@ -32,11 +32,6 @@ homepage := Some(url("https://github.com/cdcent/hl7-pet"))
 pomIncludeRepository := { _ => false }
 
 //publishTo := Some("GitHub cdcgov Apache Maven Packages" at "https://maven.pkg.github.com/cdcgov/hl7-pet")
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
-  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
 
 credentials += Credentials(
   "Sonatype Nexus Repository Manager",
