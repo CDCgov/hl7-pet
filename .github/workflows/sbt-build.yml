@@ -31,13 +31,12 @@ jobs:
 
       - name: Publish to Maven Repository
         run: | 
-            sbt
-              clean
-              rm -rf ~/.ivy2/cache
-              rm -rf ~/.sbt/1.0
-              update
-              compile
-              publishSigned
+            sbt clean
+            rm -rf ~/.ivy2/cache
+            rm -rf ~/.sbt/1.0
+            sbt update
+            sbt compile
+            sbt publishSigned
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
