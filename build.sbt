@@ -51,6 +51,9 @@ credentials += Credentials(
   sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
 
+// useGpg := true
+// pgpPassphrase := sys.env.get("GPG_PASSPHRASE_BORIS").map(_.toCharArray)
+
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
 
