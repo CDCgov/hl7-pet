@@ -5,6 +5,8 @@ on:
   push:
     branches: 
     - feature/artifact-publish
+    - master
+  workflow_dispatch:
 
 jobs:
   Build:
