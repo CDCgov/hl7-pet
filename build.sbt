@@ -15,7 +15,7 @@ sonatypeProfileName := "gov.cdc" // Your sonatype groupID
 
 import xerial.sbt.Sonatype.GitHubHosting
 sonatypeProjectHosting := Some(
-  GitHubHosting(user = "Marcelo Caldas", repository = "hl7-pet", email = "mcq1@cdc.gov")
+  GitHubHosting(user = "mscaldas2012", repository = "hl7-pet", email = "mcq1@cdc.gov")
 )
 
 licenses:= Seq(
@@ -38,7 +38,7 @@ sonatypeRepository := {
 
 import xerial.sbt.Sonatype.sonatypeCentralHost
 ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
-ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 //credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
 //publishTo := Some("Maven Central" at "https://oss.sonatype.org/service/local/staging/deploy/maven2/")
 credentials += Credentials(
