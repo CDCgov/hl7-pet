@@ -48,3 +48,21 @@ credentials += Credentials(
  sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
 publishMavenStyle := true
+
+version := "1.2.10"
+scalaVersion := "2.13.13"
+
+mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
+Global / excludeLintKeys += mainClass
+
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest-flatspec" % "3.2.14" % Test
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % Test
+libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.14.0"
+libraryDependencies += "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.17.0"
+libraryDependencies += "com.fasterxml.jackson.module" % "jackson-modules-base" % "2.17.0" pomOnly()
+libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
+
+crossPaths:= true
+ 
