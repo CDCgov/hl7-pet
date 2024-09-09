@@ -27,7 +27,7 @@ jobs:
       run: git pull --tags
 
     - name: Publish to Maven Repository
-      run: sbt clean ci-release
+      run: sbt clean publishSigned sonatypeBundleRelease
       env:
         PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
         PGP_SECRET: ${{ secrets.PGP_SECRET }}
