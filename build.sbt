@@ -1,40 +1,54 @@
-inThisBuild(List(
-  name:= "HL7-PET",
-  organization := "gov.cdc.hl7",
-  organizationName:= "CDC",
-  homepage := Some(url("https://github.com/cdcent/hl7-pet")),
-  description := "This project is a library to Parse HL7 v2 messages",
-  licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  scmInfo:= Some (
-    ScmInfo(
-      url("https://github.com/cdcgov/hl7-pet"),
-      "scm:git@github.com/cdcgov/hl7-pet.git"
-    )
-  ),
-  developers := List(
-    Developer(
-      id="mcq1",
-      name="Marcelo Caldas",
-      email = "mcq1@cdc.com",
-      url = url ("https://github.com/cdcent/hl7-pet")
-    )
-  )
-))
+// Project name
+name := "HL7-PET"
 
-pomIncludeRepository := { _ => false }
+// Project version
+version := "1.2.11"
+
+// Scala version
+scalaVersion := "2.13.13"
+
+// Organization name (this will be used in the artifact coordinates)
+organization := "gov.cdc"
+
+// Credentials for publishing (make sure to replace with your actual credentials)
+publishTo := Some("Maven Central" at "https://oss.sonatype.org/service/local/staging/deploy/maven2/")
 credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "cdcgov",
-  System.getenv("GITHUB_TOKEN")
+ "Sonatype Nexus Repository Manager",
+ "oss.sonatype.org",
+ sys.env.getOrElse("SONATYPE_USERNAME", ""),
+ sys.env.getOrElse("SONATYPE_PASSWORD", "")
 )
-
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
-
 publishMavenStyle := true
 
-version := "1.2.10"
-scalaVersion := "2.13.13"
+// Optional: Additional publishing settings
+pomSettings := Seq(
+  pomExtra :=
+    <url>https://github.com/cdcgov/hl7-pet</url>
+    <licenses>
+      <license>
+        <name>Apache License, Version 2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      </license>
+    </licenses>
+    <developers>
+      <developer>
+        <id>mcq1</id>
+        <name>Marcelo Caldas</name>
+        <url>https://github.com/cdcgov/hl7-pet</url>
+      </developer>
+    </developers>
+)
+
+// Optional: Set Scala version in the POM file (if needed)
+pomSettings += pomExtra := (
+  <scm>
+    <url>https://github.com/cdcgov/hl7-pet</url>
+    <connection>scm:git@github.com/cdcgov/hl7-pet.git</connection>
+  </scm>
+)
+
+// Add plugin for SBT publishing (make sure to include this in project/plugins.sbt as well)
+addSbtPlugin("com.typesafe.sbt" % "sbt-pom-reader" % "1.2.0")
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
 Global / excludeLintKeys += mainClass
