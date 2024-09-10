@@ -1,3 +1,7 @@
-//addSbtPlugin("com.codecommit" % "sbt-github-packages" % "0.5.3")
-// sbt 1 only, see FAQ for 0.13 support
-addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.6.0")
+unmanagedSourceDirectories.in(Compile) +=
+  baseDirectory.in(ThisBuild).value.getParentFile /
+    "plugin" / "src" / "main" / "scala"
+addSbtPlugin("com.github.sbt" % "sbt-dynver" % "5.0.1")
+addSbtPlugin("com.github.sbt" % "sbt-git" % "2.0.1")
+addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.11.3")

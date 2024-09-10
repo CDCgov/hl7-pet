@@ -1,39 +1,55 @@
-inThisBuild(List(
-  name:= "HL7-PET",
-  organization := "gov.cdc.hl7",
-  organizationName:= "CDC",
-  homepage := Some(url("https://github.com/cdcent/hl7-pet")),
-  description := "This project is a library to Parse HL7 v2 messages",
-  licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  scmInfo:= Some (
-    ScmInfo(
-      url("https://github.com/cdcgov/hl7-pet"),
-      "scm:git@github.com/cdcgov/hl7-pet.git"
-    )
-  ),
-  developers := List(
-    Developer(
-      id="mcq1",
-      name="Marcelo Caldas",
-      email = "mcq1@cdc.com",
-      url = url ("https://github.com/cdcent/hl7-pet")
-    )
-  )
-))
 
-pomIncludeRepository := { _ => false }
-credentials += Credentials(
-  "GitHub Package Registry",
-  "maven.pkg.github.com",
-  "cdcgov",
-  System.getenv("GITHUB_TOKEN")
+inThisBuild(
+  List(
+    organization := "gov.cdc",
+    organizationName:= "CDC",
+  )
 )
 
-credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
-
+// Repository for releases on Maven Central using Sonatype
+publishTo := sonatypePublishToBundle.value
 publishMavenStyle := true
 
-version := "1.2.10"
+sonatypeProfileName := "gov.cdc" // Your sonatype groupID
+// Reference the project OSS repository
+
+import xerial.sbt.Sonatype.GitHubHosting
+sonatypeProjectHosting := Some(
+  GitHubHosting(user = "mscaldas2012", repository = "hl7-pet", email = "mcq1@cdc.gov")
+)
+
+licenses:= Seq(
+  "APL2" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
+
+homepage := Some(url("https://cdc.gov"))
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/cdcgov/hl7-pet"),
+    "scm:git@github.com/cdcgov/hl7-pet.git"
+  )
+)
+
+sonatypeRepository := {
+  val nexus = "https://s01.oss.sonatype.org/"
+  if (isSnapshot.value) nexus + "content/repositories/snapshots"
+  else nexus + "service/local"
+}
+
+import xerial.sbt.Sonatype.sonatypeCentralHost
+ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
+ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+//credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
+//publishTo := Some("Maven Central" at "https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+credentials += Credentials(
+ "Sonatype Nexus Repository Manager",
+ "oss.sonatype.org",
+ sys.env.getOrElse("SONATYPE_USERNAME", ""),
+ sys.env.getOrElse("SONATYPE_PASSWORD", "")
+)
+publishMavenStyle := true
+
+version := "1.2.11"
 scalaVersion := "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
@@ -49,5 +65,4 @@ libraryDependencies += "com.fasterxml.jackson.module" % "jackson-modules-base" %
 libraryDependencies += "com.google.code.gson" % "gson" % "2.10.1"
 
 crossPaths:= true
-
-publishArtifact in (Compile, packageSrc) := true
+ 

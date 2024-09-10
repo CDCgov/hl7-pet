@@ -1,35 +1,37 @@
-name: Build & Publish
+name: Release
 
 on:
-  workflow_dispatch:
   push:
-    branches: ['master']
-
+    tags:
+       - 'v*.*.*'  # Adjust the tag pattern to match your versioning scheme
+  release:
+     types: [created]  # Trigger the workflow when a release is created
 jobs:
   Build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: sbt
 
-      - name: Setup JDK And SBT
-        uses: actions/setup-java@v4
-        with:
-          distribution: "temurin"
-          java-version: "21"
-          cache: "sbt"
+    - name: Install gnupg
+      run: sudo apt update && sudo apt install -y gnupg
 
-      - name: Publish to Maven Repository
-        run: sbt ci-release
-        env:
-          PGP_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PGP_SECRET: ${{ secrets.GPG_PRIVATE_KEY }}
-          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+    - name: Import PGP secret
+      run: echo "${{ secrets.PGP_SECRET }}" | base64 --decode | gpg --batch --import
 
-      - name: Publish to GitHub Packages
-        run: sbt publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Refresh version tag
+      run: git pull --tags
+
+    - name: Publish to Maven Repository
+      run: sbt clean publishSigned sonatypeBundleRelease
+      env:
+        PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+        PGP_SECRET: ${{ secrets.PGP_SECRET }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
