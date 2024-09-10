@@ -13,6 +13,13 @@ to retrieve values from specific fields of a given HL7 message natively, i.e., w
 the raw pipe-delimited message into another object oriented format. Because its using scala under the hood,
 this approach seems to be working very effectively and can return values very fast.
 
+## Video tutorials
+
+Several video tutorials are available:
+- [Querying HL7-PET](https://youtu.be/wkEWUZuIHTM)
+- [Using Extraction 101](https://youtu.be/EZPTZNqo6cA)
+- [Redacting Messages](https://youtu.be/jhnardgsFpU)
+
 # Build Instructions
 ## Prerequisites
 - Java Development Kit (JDK) 11
