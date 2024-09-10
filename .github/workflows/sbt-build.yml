@@ -25,9 +25,6 @@ jobs:
     - name: Import PGP secret
       run: echo "${{ secrets.PGP_SECRET }}" | base64 --decode | gpg --batch --import
 
-    - name: Refresh version tag
-      run: git pull --tags
-
     - name: Publish to Maven Repository
       run: sbt clean publishSigned sonatypeBundleRelease
       env:
