@@ -49,7 +49,7 @@ credentials += Credentials(
 )
 publishMavenStyle := true
 
-version := "1.2.10"
+version := "1.2.11"
 scalaVersion := "2.13.13"
 
 mainClass := Some("gov.cdc.hl7pet.DeIdentifierApp")
