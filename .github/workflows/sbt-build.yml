@@ -18,7 +18,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: sbt
-
+        
     - name: Install gnupg
       run: sudo apt update && sudo apt install -y gnupg
 
