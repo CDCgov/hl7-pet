@@ -2,8 +2,10 @@ name: Release
 
 on:
   push:
-    branches: 
-          - maven-central
+    tags:
+       - 'v*.*.*'  # Adjust the tag pattern to match your versioning scheme
+  release:
+     types: [created]  # Trigger the workflow when a release is created
 jobs:
   Build:
     runs-on: ubuntu-latest
