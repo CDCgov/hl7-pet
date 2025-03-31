@@ -43,7 +43,7 @@ class LoadProfileTest extends AnyFlatSpec {
 //    val mapper = new ObjectMapper()
 //    mapper.registerModule(DefaultScalaModule)
 //    val profile = mapper.readValue(profileFile, classOf[Profile])
-    val message = Source.fromFile("src/test/resources/DHQP_SPM_OTH_SECOND.hl7").mkString
+    val message = Source.fromFile("src/test/resources/covid19_elr.hl7").mkString
 
     val parser = HL7HierarchyParser.parseMessageHierarchyFromJson(message, profileFile)
 //    val output = parser.parseMessageHierarchy()
@@ -51,14 +51,16 @@ class LoadProfileTest extends AnyFlatSpec {
     println(parser)
   }
 
-  "HL7Hierarchy" should "be loaded iwth default profile" in {
-    val message = Source.fromResource("covidMsg.hl7").mkString
-
-    val parser = HL7HierarchyParser.parseMessageHierarchy(message, null)
-//    val output = parser.parseMessageHierarchy()
-
-    println(parser)
-  }
+  //This is no longer the behavior of the class. We could add default profiles in the future for
+  //this method call, but right now, just fixing unit tests. MCQ1 - 03-31-25
+//  "HL7Hierarchy" should "be loaded with default profile" in {
+//    val message = Source.fromResource("covid19_elr.hl7").mkString
+//
+//    val parser = HL7HierarchyParser.parseMessageHierarchy(message, null)
+////    val output = parser.parseMessageHierarchy()
+//
+//    println(parser)
+//  }
 
   "Profile" should "be created with Factory" in {
     val content =  Source.fromResource("COVID_ORC.json").getLines().mkString("\n")

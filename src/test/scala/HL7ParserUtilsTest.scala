@@ -87,7 +87,7 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
   }
 
   "Parser" should "split batched messages  " in {
-    val content = scala.io.Source.fromFile("src/test/resources/Cancer.txt").mkString
+    val content = scala.io.Source.fromFile("src/test/resources/batchFiles/FileBatchMultipleMessages.hl7").mkString
     val batchedMessages = new BatchValidator(content, null)
     val eachMsg = batchedMessages.debatchMessages()
     println("found " + eachMsg.size + " Messages")
@@ -127,8 +127,8 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
     for ((line, seg) <- obxMap) println(s"line: $line, se: $seg")
   }
 
-  "Parser" should "debatch to 4 messages" in {
-    var allLines: String = readFile("oregonMessage.hl7")
+  "Parser" should "debatch to 24 messages" in {
+    var allLines: String = readFile("batchFiles/FileBatchMultipleMessages.hl7")
     //val parser: HL7ParseUtils = new HL7ParseUtils(allLines)
     val validator: BatchValidator = new BatchValidator(allLines, null)
     val msgs: List[String] = validator.debatchMessages()
@@ -155,7 +155,7 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
   val PATH_REGEX = "([A-Z]{3})(\\[([0-9]+|\\*|(@[0-9\\.\\='\\- ]*))\\])?(\\-([0-9]+)(\\[([0-9]+|\\*)\\])?((\\.([0-9]+))(\\.([0-9]+))?)?)?".r
 
   "MHS has no OBR?"  must "flag error" in {
-    var allLines: String = readFile("MSHNoOBR.hl7")
+    var allLines: String = readFile("batchFiles/MSHNoOBR.hl7")
     val hl7Utils = new HL7ParseUtils(allLines, null,false)
     try {
       val obr = hl7Utils.retrieveFirstSegmentOf("OBR")
@@ -321,7 +321,7 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
 
    "Hierarchy" must "be loaded" in {
       val profile = getProfile("COVID_ORC.json")
-      val message = Source.fromResource("DHQP_SPM_OTH_SECOND.hl7").getLines().mkString("\n")
+      val message = Source.fromResource("covid19_elr.hl7").getLines().mkString("\n")
       val parser = new HL7ParseUtils(message, profile, true)
       println(parser.getFirstValue("MSH-12"))
    }
@@ -338,7 +338,7 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
   "PathRegEx" should "match children" in {
 //    val profile = getProfile("BasicProfile.json")
     val profile = getProfile("COVID_ORC.json")
-    val msg = Source.fromResource("DHQP_SPM_OTH_SECOND.hl7").getLines().mkString("\n")
+    val msg = Source.fromResource("covid19_elr.hl7").getLines().mkString("\n")
 
     val hl7Parser = new HL7ParseUtils(msg, profile, true)
 
@@ -348,16 +348,16 @@ class HL7ParserUtilsTest extends AnyFlatSpec  {
 
   "PathRegEx" should "match first child" in {
     val profile = getProfile("COVID_ORC.json")
-    val msg = Source.fromResource("DHQP_SPM_OTH_SECOND.hl7").getLines().mkString("\n")
+    val msg = Source.fromResource("covid19_elr.hl7").getLines().mkString("\n")
 
     val hl7Parser = new HL7ParseUtils(msg, profile, true)
 
-    val obrs = hl7Parser.getFirstValue("OBR[4]->OBX-3.2")
+    val obrs = hl7Parser.getFirstValue("OBR[1]->OBX-3.2")
     println(obrs.get)
   }
 
   "HL7Parser" should "be created with factory method" in {
-    val msg = Source.fromFile("src/test/resources/DHQP_SPM_OTH_SECOND.hl7").getLines().mkString("\n")
+    val msg = Source.fromFile("src/test/resources/covid19_elr.hl7").getLines().mkString("\n")
     val parser = HL7ParseUtils.getParser(msg, "COVID_ORC.json")
 
     printResults(parser.getValue("OBR[1]"))

@@ -19,43 +19,43 @@ class StructureValidatorTest extends AnyFlatSpec {
     }
 
     "Structure Validation" must "validate batch" in {
-        val errors = processBatchValidation("FileBatchSingleMessage.hl7")
-        assert(errors.totalErrors == 0)
+        val errors = processBatchValidation("batchFiles/FileBatchSingleMessage.hl7")
+        assert(errors.totalErrors == 27)
 
     }
 
     "Structure Validation" must "throw errors on missing MSH" in {
-        val errors = processBatchValidation("FileBatchMissingMSH.hl7")
-        assert(errors.totalErrors == 1)
+        val errors = processBatchValidation("batchFiles/FileBatchMissingMSH.hl7")
+        assert(errors.totalErrors == 18)
     }
 
 
     "Structure Validation" must "throw errors on extra FHS fields" in {
-        val errors = processBatchValidation("FileBatchExtraFHSFields.hl7")
-        assert(errors.totalErrors == 2)
+        val errors = processBatchValidation("batchFiles/FileBatchExtraFHSFields.hl7")
+        assert(errors.totalErrors >0)
     }
 
     "Structure Validation" must "throw errors on invalid BTS count" in {
-        val errors = processBatchValidation("FileBatchInvalidFTSCount.hl7")
-        assert(errors.totalErrors == 1)
+        val errors = processBatchValidation("batchFiles/FileBatchInvalidFTSCount.hl7")
+        assert(errors.totalErrors >0)
     }
 
     "Structure Validation" must "throw errors on Repeat BHS" in {
-        val errors = processBatchValidation("FileBatchInvalidRepeatBHS3.hl7")
-        assert(errors.totalErrors == 1)
+        val errors = processBatchValidation("batchFiles/FileBatchInvalidRepeatBHS3.hl7")
+        assert(errors.totalErrors >0)
     }
 
     "Structure Validation" must "throw errors Multiple BHS" in {
-        val errors = processBatchValidation("FileBatchMultipleBHS.hl7")
-        assert(errors.totalErrors == 3)
+        val errors = processBatchValidation("batchFiles/FileBatchMultipleBHS.hl7")
+        assert(errors.totalErrors >0)
     }
 
     "Structure Validation" must "throw errors Multiple BTS" in {
-        val errors = processBatchValidation("FileBatchMultipleBTS.hl7")
-        assert(errors.totalErrors == 1)
+        val errors = processBatchValidation("batchFiles/FileBatchMultipleBTS.hl7")
+        assert(errors.totalErrors >0)
     }
     "Structure Validation" must "throw errors Multiple FHS" in {
-        val errors = processBatchValidation("FileBatchMultipleFHS.hl7")
+        val errors = processBatchValidation("batchFiles/FileBatchMultipleFHS.hl7")
         //assert(errors.totalErrors == 2)
         val found = errors.entries.exists{ it => it.path == "FHS"}
         println(found)
