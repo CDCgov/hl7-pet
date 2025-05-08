@@ -145,7 +145,7 @@ class BatchValidatorTest extends AnyFlatSpec {
   }
 
   "Two MSH" must "flag two message" in {
-    val source = io.Source.fromResource("TwoMSH.hl7")
+    val source = io.Source.fromResource("batchFiles/TwoMSH.hl7")
     var allLines = ""
     if (source != null) {
       for (line <- source.getLines) {
@@ -203,7 +203,7 @@ class BatchValidatorTest extends AnyFlatSpec {
 
   private def getBatchValidator(filename: String, verbose: Boolean): BatchValidator = {
     var allLines = ""
-    val source = io.Source.fromResource(filename)
+    val source = io.Source.fromResource(s"batchFiles/$filename")
     if (verbose) println("Source is null? " + (source == null))
     if (source != null) {
       for (line <- source.getLines) {

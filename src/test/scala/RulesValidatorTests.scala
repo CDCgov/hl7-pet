@@ -10,17 +10,17 @@ class RulesValidatorTests extends AnyFlatSpec  {
       val validator:RulesValidator = new RulesValidator("predicateRules.json")
       var errors:ValidationErrors = null
       ConsoleProgress.showProgress {
-        errors = validator.validatePredicate(getMessage("FDD_CAMP_TC01_ADD.txt"))
+        errors = validator.validatePredicate(getMessage("covid19_elr.hl7"))
       }
       println(s"found ${errors.totalErrors} errors and ${errors.totalWarnings} warnings")
-      errors.getEntries().foreach(e => println(e))
+      //errors.getEntries().foreach(e => println(e))
   }
 
   "ConformanceRules" must "validate" in {
     val validator:RulesValidator = new RulesValidator("conformanceRules.json")
     var errors:ValidationErrors = null
     ConsoleProgress.showProgress {
-      errors = validator.validateConformance(getMessage("FDD_CAMP_TC01_ADD.txt"))
+      errors = validator.validateConformance(getMessage("covid19_elr.hl7"))
     }
     println(s"found ${errors.totalErrors} errors and ${errors.totalWarnings} warnings")
     errors.getEntries().foreach(e => println(e))
