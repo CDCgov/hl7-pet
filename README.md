@@ -1,5 +1,26 @@
 # HL7-PET
 
+## Java Requirement
+
+This project **must be built and tested with JDK 11 or newer**. The source uses Java 11
+APIs (e.g. `String.isBlank`), so compiling on JDK 8 fails with errors such as
+`value isBlank is not a member of String`. JDK 11 is recommended to match the target
+bytecode (the CI publish step uses JDK 17).
+
+Point SBT at a JDK 11+ before building — verify with `java -version`:
+
+```bash
+# Git Bash (Windows)
+export JAVA_HOME="/c/path/to/jdk-11"
+export PATH="$JAVA_HOME/bin:$PATH"
+```
+
+```powershell
+# PowerShell
+$env:JAVA_HOME = "C:\path\to\jdk-11"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+```
+
 # Introduction
 
 This library is built in scala and the main purpose is to (**P**)arse, (**E**)xtract, (**T**)ransform
